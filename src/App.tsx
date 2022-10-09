@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import { Navigation } from './components/Navigation'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { CommitsProjectUserPage } from './pages/CommitsProjectUserPage'
+import { ProjectsUserPage } from './pages/ProjectsUserPage'
+import { SearchUserPage } from './pages/SearchUserPage'
+
+export const App = () => {
+
+    return (
+        <>
+            <Navigation />
+            <Routes>
+                <Route path='/' element={<SearchUserPage />} />
+                <Route path='/userinfo' element={<ProjectsUserPage />} />
+                <Route path='/userinfo/commits' element={<CommitsProjectUserPage />} />
+            </Routes>
+        </>
+    )
 }
 
 export default App;
