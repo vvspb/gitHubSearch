@@ -2,9 +2,7 @@ import { build } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/cacheLif
 import { DefinitionType } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { AnyIfEmpty } from 'react-redux'
-import { IUser, ServerResponse } from '../models/models'
-
-export const login = 'vvspb'
+import { IRepo, IUser, ServerResponse } from '../models/models'
 
 export const gitHubApi = createApi({
     reducerPath: 'gitHub/api',
@@ -17,17 +15,22 @@ export const gitHubApi = createApi({
                 url: `search/users`,
                 params: {
                    q: search,
-                   per_page: 10
+                   per_page: 15
                 }
             }),
             transformResponse: (response: ServerResponse<IUser>) => response.items
         }),
-        getUserRepos: build.query<any, string>({
+        getUserRepos: build.query<IRepo[], string>({
            query: (username: string) => ({
               url: `users/${username}/repos`
            })
-        })
+        }),
+        getRepoCommits: build.query<any, string>({
+            query: (username: string) => ({
+               url: `users/${username}/repos/commits`
+            })
+         })
     })
 })
 
-export const {useSearchUsersQuery, useLazyGetUserReposQuery}= gitHubApi // кастомный хук для наших компонентов
+export const {useSearchUsersQuery, useGetUserReposQuery}= gitHubApi // кастомный хук для наших компонентов
