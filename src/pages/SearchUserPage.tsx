@@ -60,7 +60,7 @@ export function SearchUserPage() {
                         className='py-2 px-4 hover:bg-[#5d5c61d7] hover:text-white transition-color cursor-pointer'
                         onClick= {() => clickHandler(user.login)}
                         >
-                           <Link to='/userinfo'>{user.login}</Link>
+                           {user.login}
                         </li>
                     ))}
                 </ul>}

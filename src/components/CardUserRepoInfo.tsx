@@ -1,32 +1,47 @@
 import React, { ReactNode } from 'react'
 import { useAppSelector } from '../hooks/hook'
 import { useGetUserReposQuery } from '../store/gitHub.api'
+import { useAppDispatch } from '../hooks/hook'
+import { setRepoCommits } from '../store/gitHub.slice'
+import { useNavigate } from 'react-router-dom'
 
 
 
 export const CardUserRepoInfo = () => {
   const userInfo = useAppSelector(state => state.userInfo)
   const { isLoading, isError, data: repos} = useGetUserReposQuery(userInfo.userInfo.login)
- 
-  console.log(repos);
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const clickHandler = (repoName: string) =>{
+    dispatch(setRepoCommits(repoName))
+    navigate('/userinfo/commits')
+  }
   
   return (
     <>
-    <div className='grid grid-cols-4 gap-1 text-start font-bold text-lg mb-2'>
-    <div>Название</div>
-    <div>Язык программирования</div>
-    <div>Описание</div>
-    <div>Количество звезд</div>
-    </div>
-    {repos?.map<ReactNode>((repo) =>
-    <div key={repo.id} className='grid grid-cols-4 gap-8 text-start' >
-      <div>{repo.name}</div>
-      <div>{repo.language}</div>
-      <div>{repo.description}</div>
-      <div>{repo.license}</div>
-      </div>
+    <table className='w-full shadow-md rounded-lg'>
+      <thead className='bg-gray-200 border-b-2 border-gray-300'>
+        <tr>
+     <th className='p-3 text-sm font-bold tracking-wide text-left'>Название</th>
+     <th className='p-3 text-sm font-bold tracking-wide text-left'>Язык программирования</th>
+     <th className='p-3 text-sm font-bold tracking-wide text-left'>Описание</th>
+     <th className='p-3 text-sm font-bold tracking-wide text-left'>Количество звезд</th>
+     </tr>
+     </thead>
+     <tbody>
+     {repos?.map<ReactNode>((repo) =>
+     <tr key={repo.id} className='bg-gray-50 hover:bg-gray-100' >
+      <td className='p-3 text-sm text-gray-800'>
+        <span className='font-bold text-blue-500 hover:underline' onClick={()=> clickHandler(repo.name)}>
+          {repo.name}
+        </span></td>
+      <td className='p-3 text-sm text-gray-800'>{repo.language}</td>
+      <td className='p-3 text-sm text-gray-800'>{repo.description}</td>
+      <td className='p-3 text-sm text-gray-800'>{repo.stargazers_count}</td>
+      </tr>
      )}
-   
+     </tbody>
+   </table>
    </>
   )
 }

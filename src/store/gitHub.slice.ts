@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { ReactReduxContextValue } from "react-redux"
 import { IUser } from "../models/models"
 
 
 interface GitHubSate {
     userInfo: IUser
+    repoName: string
 }
 
 const initialState: GitHubSate = {
     userInfo: {
-        "login": "VlADIm",
+        "login": "Имя",
         "id": 3742464,
         "node_id": "MDQ6VXNlcjM3NDI0NjQ=",
         "avatar_url": "https://avatars.githubusercontent.com/u/3742464?v=4",
@@ -28,7 +28,8 @@ const initialState: GitHubSate = {
         "type": "User",
         "site_admin": false,
         "score": 1.0
-      }
+      },
+         repoName: ''
 }
 
 export const gitHubSlice = createSlice({
@@ -38,8 +39,12 @@ export const gitHubSlice = createSlice({
         setUserInfo: (state, action: PayloadAction<IUser>) => {
             state.userInfo = action.payload
         },
+
+        setRepoCommits: (state, action: PayloadAction<string>) => {
+            state.repoName = action.payload
+        },
     },
 })
 
-export const { setUserInfo } = gitHubSlice.actions
+export const { setUserInfo, setRepoCommits } = gitHubSlice.actions
 export default gitHubSlice.reducer

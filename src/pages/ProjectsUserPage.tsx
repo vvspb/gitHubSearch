@@ -6,7 +6,7 @@ import { CardUserRepoInfo } from '../components/CardUserRepoInfo'
 export function ProjectsUserPage() {
 
   // const [fetchRepos, {data: reapos}] = useLazyGetUserReposQuery()
-  const userInfo = useAppSelector(state => state.userInfo)
+  // const userInfo = useAppSelector(state => state.userInfo)
 
   
   

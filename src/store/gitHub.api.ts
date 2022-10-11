@@ -2,7 +2,7 @@ import { build } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/cacheLif
 import { DefinitionType } from '@reduxjs/toolkit/dist/query/endpointDefinitions'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { AnyIfEmpty } from 'react-redux'
-import { IRepo, IUser, ServerResponse } from '../models/models'
+import { ICommit, IRepo, IUser, ServerResponse } from '../models/models'
 
 export const gitHubApi = createApi({
     reducerPath: 'gitHub/api',
@@ -25,12 +25,12 @@ export const gitHubApi = createApi({
               url: `users/${username}/repos`
            })
         }),
-        getRepoCommits: build.query<any, string>({
-            query: (username: string) => ({
-               url: `users/${username}/repos/commits`
+        getRepoCommits: build.query<ICommit[], string[]>({
+            query: (userRepo: string[]) => ({
+               url: `repos/${userRepo[0]}/${userRepo[1]}/commits`
             })
          })
     })
 })
 
-export const {useSearchUsersQuery, useGetUserReposQuery}= gitHubApi // кастомный хук для наших компонентов
+export const {useSearchUsersQuery, useGetUserReposQuery, useGetRepoCommitsQuery}= gitHubApi // кастомный хук для наших компонентов
