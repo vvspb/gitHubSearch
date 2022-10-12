@@ -1,14 +1,32 @@
-# SearchGitHub
+# GitHubSearch
 
-SearchGitHub - это интерфейс к сервису github.com, который позволит находить пользователей по логину, отображать их репозитории, а так же просматривать коммиты в репозиториях пользователя.
-___
+<p align="center">
+      <img src="https://images.squarespace-cdn.com/content/v1/5f19ff402084057c684b61b8/36b08d30-2026-4a60-a770-145aa1001b0b/process-icons-01.png" width="120">
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+   <img src="https://img.shields.io/badge/Engine-React%2018.0.2-blue" alt="React Version">
+   <img src="https://img.shields.io/badge/Version-v1.0-purple" alt="Game Version">
+   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
+
+# About
+
+**GitHubSearch** is an interface to the service github.com , which will allow you to find users by login, display their repositories, as well as view commits in the user's repositories. **GitHubSearch** **-** https://vvspb.github.io/gitHubSearch/
+
+## Stack
+
+- React
+- TypeScript
+- Redux toolkit and redux toolkit query
+- TailwindCSS
+
 
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `npm i`
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -17,18 +35,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+## Developers
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- https://github.com/vvspb
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
+Project gitHubSearch is distributed under the MIT License (MIT)
