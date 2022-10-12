@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAppSelector } from '../hooks/redux'
-import { Loader } from './Loader'
 
 
 const CardUserInfo = () => {

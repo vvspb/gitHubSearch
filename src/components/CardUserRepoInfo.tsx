@@ -14,7 +14,7 @@ export const CardUserRepoInfo = () => {
   const navigate = useNavigate()
   const clickHandler = (repoName: string) =>{
     dispatch(setRepoCommits(repoName))
-    navigate('/userinfo/commits')
+    navigate('/gitHubSearch/userinfo/commits')
   }
   
   return (

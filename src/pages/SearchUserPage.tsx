@@ -29,7 +29,7 @@ export function SearchUserPage() {
                 const {login, avatar_url} = resObj
                 dispatch(setUserInfo({login, avatar_url}))
             }
-            navigate('/userinfo')
+            navigate('/gitHubSearch/userinfo')
         } else if (users?.length! == 0) {
             alert('Пользователь с таким логином не найден. Введите другой логин')
         }

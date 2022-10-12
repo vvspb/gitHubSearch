@@ -12,9 +12,9 @@ export const App = () => {
         <>
             <Navigation />
             <Routes>
-                <Route path='/' element={<SearchUserPage />} />
-                <Route path='/userinfo' element={<ProjectsUserPage />} />
-                <Route path='/userinfo/commits' element={<CommitsProjectUserPage />} />
+                <Route path='/gitHubSearch' element={<SearchUserPage />} />
+                <Route path='/gitHubSearch/userinfo' element={<ProjectsUserPage />} />
+                <Route path='/gitHubSearch/userinfo/commits' element={<CommitsProjectUserPage />} />
             </Routes>
         </>
     )

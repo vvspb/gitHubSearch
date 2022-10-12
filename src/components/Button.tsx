@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 export const Button = ({children }: PropsWithChildren) => {
     const navigate = useNavigate()
     const clickHandler = () => {
-        navigate('/userinfo')
+        navigate('/gitHubSearch/userinfo')
     }
   return (
     <button 
