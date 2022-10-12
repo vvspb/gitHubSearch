@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Modal } from '../components/Modal'
 import { useDebounce } from '../hooks/Debounce'
 import { useAppDispatch } from '../hooks/redux'
 import { useSearchUsersQuery } from '../store/gitHub.api'
@@ -8,6 +9,7 @@ import { setUserInfo } from '../store/gitHub.slice'
 export function SearchUserPage() {
     const [search, setSearch] = useState('')
     const [dropdown, setDropdown] = useState(false)
+    const [modal, setModal] = useState(false)
     const debounced = useDebounce(search)
     const navigate = useNavigate()
 
@@ -31,9 +33,11 @@ export function SearchUserPage() {
             }
             navigate('/gitHubSearch/userinfo')
         } else if (users?.length! == 0) {
-            alert('Пользователь с таким логином не найден. Введите другой логин')
+            setModal(true)
+            //alert('Пользователь с таким логином не найден. Введите другой логин')
         }
     }
+
     return (
         <div className='flex justify-center pt-10 mx-auto h-screen w-screen'>
             {isError && <p className='text-center text-red-600'> Что-то пошло не так</p>}
@@ -65,6 +69,10 @@ export function SearchUserPage() {
                     ))}
                 </ul>}
            </div>
+           {modal && <Modal 
+             title='Пользователь с таким логином не найден' 
+             onClose={()=> setModal(false)}
+             >Введите другой логин.</Modal>}
        </div>
     )
 }
