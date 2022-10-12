@@ -1,7 +1,6 @@
-import { cleanup } from "@testing-library/react";
 import { useEffect, useState } from "react";
 
-export function useDebounce(value: string, delay = 650): string {
+export function useDebounce(value: string, delay = 450): string {
   const [debounced, setDebounced] = useState(value)
 
   useEffect(()=> {
@@ -9,5 +8,5 @@ export function useDebounce(value: string, delay = 650): string {
    return () => clearTimeout(handler)
   }, [value, delay])
 
-  return debounced
+  return debounced  // кастомный хук для задержки отправки запроса при вводе в поисковике
 }

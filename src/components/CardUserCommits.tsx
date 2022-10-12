@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppSelector } from '../hooks/hook'
+import { useAppSelector } from '../hooks/redux'
 import { ICommit } from '../models/models'
 import { useGetRepoCommitsQuery } from '../store/gitHub.api'
 
@@ -7,10 +7,10 @@ export const CardUserCommits = () => {
     const userInfo = useAppSelector(state => state.userInfo)
     const repoName = useAppSelector(state => state.userInfo.repoName)
     const { isLoading, isError, data: commits} = useGetRepoCommitsQuery([userInfo.userInfo.login ,repoName])
-    console.log(commits?.map(com => new Date(com.commit.author.date).toISOString().split('T')[0]))
     
   return (
     <>
+     {isError && <p className='text-center text-red-600'> Что-то пошло не так</p>}
     <table className='w-full shadow-md rounded-lg'>
       <thead className='bg-gray-200 border-b-2 border-gray-300'>
         <tr>
@@ -20,13 +20,13 @@ export const CardUserCommits = () => {
      </tr>
      </thead>
      <tbody>
-     {commits?.map((commit: ICommit) =>
-     <tr key={commit.sha} className='bg-gray-50 hover:bg-gray-100' >
+     {commits?.map((commitItem: ICommit) =>
+     <tr key={commitItem.sha} className='bg-gray-50 hover:bg-gray-100' >
       <td className='p-3 text-sm text-gray-800'>
-          {commit.commit.author.name}
+          {commitItem.commit.author.name}
       </td>
-      <td className='p-3 text-sm text-gray-800'>{commit.sha}</td>
-      <td className='p-3 text-sm text-gray-800'>{new Date(commit.commit.author.date).toISOString().split('T')[0]}</td>
+      <td className='p-3 text-sm text-gray-800'>{commitItem.sha}</td>
+      <td className='p-3 text-sm text-gray-800'>{new Date(commitItem.commit.author.date).toISOString().split('T')[0]}</td>
       </tr>
      )}
      </tbody>
