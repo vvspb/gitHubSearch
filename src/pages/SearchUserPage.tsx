@@ -5,6 +5,7 @@ import { useDebounce } from '../hooks/Debounce'
 import { useAppDispatch } from '../hooks/redux'
 import { useSearchUsersQuery } from '../store/gitHub.api'
 import { setUserInfo } from '../store/gitHub.slice'
+import { Button } from '../components/Button'
 
 export function SearchUserPage() {
     const [search, setSearch] = useState('')
@@ -34,7 +35,6 @@ export function SearchUserPage() {
             navigate('/gitHubSearch/userinfo')
         } else if (users?.length! == 0) {
             setModal(true)
-            //alert('Пользователь с таким логином не найден. Введите другой логин')
         }
     }
 
@@ -50,12 +50,12 @@ export function SearchUserPage() {
                         className='w-full bg-transparent border-none outline-none py-1 px-4 font-semibold text-gray-900'
                         onChange={e => {setSearch(e.target.value)
                         }} />
-                <button 
-                className='m-2 rounded bg-[#5d5c61] text-white py-2 px-4 hover:bg-[#e9c511] hover:text-black'
+                <Button 
+                //className='m-2 rounded bg-[#5d5c61] text-white py-2 px-4 hover:bg-[#e9c511] hover:text-black'
                 onClick= {() => clickHandler(search)}
                 >
                     Найти
-                </button>
+                </Button>
                 </div>
                 { dropdown && <ul className='list-none absolute top-[50px] left-0 right-0 max-h-[200px] w-[560px] overflow-y-scroll shadow-md rounded bg-gray-300'>
                     {isLoading && <p className='text-center'>Loading...</p>}
